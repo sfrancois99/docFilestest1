@@ -124,11 +124,16 @@ public class IHMDocFiles extends javax.swing.JPanel {
 
     private void deleteJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         int index=this.jList1.getSelectedIndex();
+        if (index<0){
+            return;
+        }
         if (listModel.getSize() > 0){
             listModel.removeElementAt(index);
-        }
-        if(listModel.getSize() > 0){
-            this.jList1.setSelectedIndex(index);
+            if (index<listModel.getSize()){
+                this.jList1.setSelectedIndex(index);
+            } else {
+                this.jList1.setSelectedIndex(listModel.getSize()-1);
+            }
         }
     }                                             
     private void openFile(){
